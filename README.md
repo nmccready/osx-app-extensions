@@ -4,3 +4,4 @@ osx-app-extensions
 - change the icons to whatever you desire
 
 Stuff that OSX should have
+![](images/app_icon.png?raw=true)
