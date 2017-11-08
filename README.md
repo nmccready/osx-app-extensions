@@ -7,4 +7,4 @@ Stuff that OSX should have
 
 Below image is from LaunchPad yay!!
 
-![](https://raw.github.com/nmccready/osx-app-extensions/master/images/app_icons.png)
+![](./images/app_icons.png)
