@@ -40,7 +40,7 @@ main() {
   dir=$(project_dir)
   write_local_xcconfig "$dir"
   (cd "$dir" && xcodegen generate --quiet)
-  (cd "$dir" && xcodebuild \
+  (cd "$dir" && xcodebuild -quiet \
     -project LogiBattery.xcodeproj \
     -scheme LogiBattery \
     -configuration Release \
