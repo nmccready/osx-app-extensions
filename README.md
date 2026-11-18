@@ -11,3 +11,5 @@ Below image is from LaunchPad yay!!
 
 
 Add these Automator Scripts to your /Applications they will will now be launchable via launcher as well.
+
+- [LogiBattery](./LogiBattery/README.md): a macOS widget showing battery levels of Logitech devices on a Logi Bolt receiver.
