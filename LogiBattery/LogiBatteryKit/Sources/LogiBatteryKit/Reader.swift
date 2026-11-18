@@ -1,7 +1,7 @@
 import Foundation
 import os
 
-public let logger = Logger(subsystem: "com.nmccready.LogiBattery", category: "read")
+let logger = Logger(subsystem: "com.nmccready.LogiBattery", category: "read")
 
 /// Last readings, persisted in the calling process's own `UserDefaults` (the sandbox container for
 /// the app and for the widget, each separately).
@@ -28,7 +28,7 @@ public struct BatteryCache {
 }
 
 /// Live batteries win. Any other slot seen before keeps its last value as `.stale`.
-public func merge(live: [DeviceBattery], previous: [Reading], now: Date) -> [Reading] {
+func merge(live: [DeviceBattery], previous: [Reading], now: Date) -> [Reading] {
     var bySlot: [UInt8: Reading] = [:]
     for reading in previous {
         bySlot[reading.id] = .stale(reading.battery, lastSeen: reading.date)
