@@ -84,5 +84,6 @@ struct LogiBatteryWidget: Widget {
 struct LogiBatteryWidgetBundle: WidgetBundle {
     var body: some Widget {
         LogiBatteryWidget()
+        LogiBatteryRingsWidget()
     }
 }
