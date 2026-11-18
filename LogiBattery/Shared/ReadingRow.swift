@@ -45,8 +45,16 @@ struct ReadingRow: View {
                     .foregroundStyle(reading.isLow ? Color.red : Color.primary)
             }
             if showsDetail {
-                ProgressView(value: Double(battery.percent), total: 100)
-                    .tint(reading.isLow ? .red : .accentColor)
+                Capsule()
+                    .fill(.quaternary)
+                    .overlay(alignment: .leading) {
+                        GeometryReader { proxy in
+                            Capsule()
+                                .fill(reading.isLow ? Color.red : Color.accentColor)
+                                .frame(width: proxy.size.width * CGFloat(min(max(battery.percent, 0), 100)) / 100)
+                        }
+                    }
+                    .frame(height: 4)
                 if reading.isStale {
                     Text("asleep, last seen \(reading.date, format: .relative(presentation: .named))")
                         .font(.caption2)
