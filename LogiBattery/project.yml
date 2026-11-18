@@ -1,0 +1,74 @@
+name: LogiBattery
+options:
+  bundleIdPrefix: com.nmccready
+  deploymentTarget:
+    macOS: "15.0"
+  createIntermediateGroups: true
+
+# Local.xcconfig is written by scripts/build.sh and holds DEVELOPMENT_TEAM. It is gitignored.
+configFiles:
+  Debug: Local.xcconfig
+  Release: Local.xcconfig
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    MARKETING_VERSION: "1.0.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Manual
+    CODE_SIGN_IDENTITY: Apple Development
+    PROVISIONING_PROFILE_SPECIFIER: ""
+
+packages:
+  LogiBatteryKit:
+    path: LogiBatteryKit
+
+targets:
+  LogiBattery:
+    type: application
+    platform: macOS
+    sources: [App, Shared]
+    dependencies:
+      - package: LogiBatteryKit
+      - target: LogiBatteryWidget
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nmccready.LogiBattery
+    entitlements:
+      path: Generated/LogiBattery.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.device.usb: true
+    info:
+      path: Generated/LogiBattery-Info.plist
+      properties:
+        CFBundleDisplayName: Logi Battery
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.utilities
+
+  LogiBatteryWidget:
+    type: app-extension
+    platform: macOS
+    sources: [Widget, Shared]
+    dependencies:
+      - package: LogiBatteryKit
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nmccready.LogiBattery.Widget
+        SKIP_INSTALL: true
+    entitlements:
+      path: Generated/LogiBatteryWidget.entitlements
+      properties:
+        com.apple.security.app-sandbox: true
+        com.apple.security.device.usb: true
+    info:
+      path: Generated/LogiBatteryWidget-Info.plist
+      properties:
+        CFBundleDisplayName: Logi Battery
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
