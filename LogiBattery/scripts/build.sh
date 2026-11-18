@@ -45,6 +45,7 @@ main() {
     -scheme LogiBattery \
     -configuration Release \
     -derivedDataPath build \
+    CURRENT_PROJECT_VERSION="$(date +%Y%m%d%H%M%S)" \
     build | tail -n 25)
   echo "built: $dir/build/Build/Products/Release/LogiBattery.app"
 }
