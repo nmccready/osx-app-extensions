@@ -14,3 +14,4 @@ _SpecRunner.html
 /spec/coverage
 *.iml
 /bower_components
+tmp
